@@ -1,7 +1,7 @@
 package com.batch.model.entity;
 
 import lombok.Data;
-import lombok.Getter;
+
 
 import javax.persistence.*;
 
@@ -14,4 +14,6 @@ public class Person {
     private String name;
     private String lastname;
     private Integer age;
+    private String insertiondate;
+
 }

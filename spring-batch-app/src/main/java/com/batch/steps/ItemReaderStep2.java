@@ -24,7 +24,7 @@ public class ItemReaderStep2 implements Tasklet {
     @Override
     public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
         log.info("-----------------------------Inicio del paso de lectura------------------------------");
-        Reader reader = new FileReader(resourceLoader.getResource("classpath: files/destination/person.csv").getFile());         //classpath devuelve la ruta absoluta de la carpeta "resources".
+        Reader reader = new FileReader(resourceLoader.getResource("classpath:files/destination/persons.csv").getFile());         //classpath devuelve la ruta absoluta de la carpeta "resources".
         CSVParser parser = new CSVParserBuilder().withSeparator(',').build();                                                           //sirve para especificar el separador de nuestro documento.
         CSVReader csvReader = new CSVReaderBuilder(reader).withCSVParser(parser).withSkipLines(1).build();                              //csvReader: nos va a permitir leer los registros del archivo. con "1" se le dice q se salte la primera linea del titulo.
         List<Person>personList = new ArrayList<>();
@@ -39,6 +39,9 @@ public class ItemReaderStep2 implements Tasklet {
         csvReader.close();
         reader.close();
         log.info("-----------------------------Fin del paso de lectura------------------------------");
+
+        chunkContext.getStepContext().getStepExecution().getJobExecution().getExecutionContext().put("personList", personList);         //guarda la lista en el contexto de springbatch
+
         return RepeatStatus.FINISHED;
     }
 
