@@ -46,7 +46,6 @@ public class BatchController {
                 //se usa un Job laucher para ejecutar el job
                 jobLauncher.run(job, jobParameters);
 
-
                 Map<String, String> response = new HashMap<>();
                 response.put("archivo", fileName);
                 response.put("estado", "recibido");

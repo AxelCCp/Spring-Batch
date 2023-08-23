@@ -5,5 +5,7 @@ import com.batch.model.entity.Person;
 import java.util.List;
 
 public interface PersonService {
-    void saveAll(List<Person> personList);
+
+    Iterable<Person> saveAll(List<Person> personList);
+
 }
